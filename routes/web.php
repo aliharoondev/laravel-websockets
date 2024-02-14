@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Message\MessageController;
+use App\Http\Controllers\Message\ChatController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Models\Message;
+use App\Models\Chat;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', ['messages' => Message::all()]);
+    return Inertia::render('Dashboard', ['messages' => Chat::all()]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -40,8 +40,8 @@ Route::middleware('auth')->group(function () {
 
     # ------- Messages Routes ---------- #
     Route::prefix('messages')->group(function () {
-        Route::get('', [MessageController::class, 'index'])->name('messages.index');
-        Route::post('send', [MessageController::class, 'sendMessage'])->name('send.message');
+        Route::get('', [ChatController::class, 'index'])->name('messages.index');
+        Route::post('send', [ChatController::class, 'sendMessage'])->name('send.message');
     });
 });
 

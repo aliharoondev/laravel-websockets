@@ -7,11 +7,13 @@ import axios from 'axios';
 export default function Dashboard({ auth, messages }) {
 
     const [message, setMessage] = useState('');
+    const [messageList, setMessageList] = useState(messages);
 
     useEffect(() => {
         window.Echo.channel('chat')
-            .listen('.MessageSent', (event) => {
+            .listen('MessageSent', (event) => {
                 console.log('Event', event);
+                setMessageList(prevMessages => [...prevMessages, event.message]);
             });
     }, []);
 
@@ -19,9 +21,8 @@ export default function Dashboard({ auth, messages }) {
         e.preventDefault();
         axios.post('/messages/send', { message }).then((res) => {
             setMessage('');
-            messages.push({ message });
+            messageList.push({ message });
         });
-        // router.post('/messages/send', { message });
     }
 
     return (
@@ -37,7 +38,7 @@ export default function Dashboard({ auth, messages }) {
                         <div className="p-6 text-gray-900 dark:text-gray-100">You're logged in!</div>
                         <div className='flex flex-col h-96 overflow-y-auto'>
                             {
-                                messages && messages.map((msg, index) => (
+                                messageList && messageList.map((msg, index) => (
                                     <div className='p-3 border-b' key={index}>
                                         <small className="text-gray-500 font-semibold" >{msg.message}</small>
                                     </div>
