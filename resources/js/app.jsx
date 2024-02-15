@@ -19,3 +19,9 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+Echo.private(`chat.1.2`)
+    .listen('MessageSent', (event) => {
+        console.log('Event', event);
+        console.log('Event', event.message);
+    });

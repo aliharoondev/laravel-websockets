@@ -10,16 +10,20 @@ export default function Dashboard({ auth, messages }) {
     const [messageList, setMessageList] = useState(messages);
 
     useEffect(() => {
-        window.Echo.channel('chat')
-            .listen('MessageSent', (event) => {
-                console.log('Event', event);
-                setMessageList(prevMessages => [...prevMessages, event.message]);
-            });
+        // var receiverId = 2;
+        // window.Echo.private(`chat.1.2`)
+        //     .listen('MessageSent', (event) => {
+        //         console.log('Event', event);
+        //         console.log('Event', event.message);
+        //         setMessageList(prevMessages => [...prevMessages, event.message]);
+        //     });
     }, []);
 
     const sendMessage = (e) => {
         e.preventDefault();
-        axios.post('/messages/send', { message }).then((res) => {
+        console.log('auth',auth);
+        var receiverId = 2;
+        axios.post('/messages/send', { message, receiver_id: receiverId }).then((res) => {
             setMessage('');
             messageList.push({ message });
         });

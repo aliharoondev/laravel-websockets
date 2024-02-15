@@ -45,8 +45,4 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::post('/broadcasting/auth', function () {
-    return Auth::user();
-});
-
 require __DIR__ . '/auth.php';
