@@ -20,7 +20,8 @@ createInertiaApp({
     },
 });
 
-Echo.private(`chat.1.2`)
+const senderId = 1;
+Echo.private(`chat.${senderId}`)
     .listen('MessageSent', (event) => {
         console.log('Event', event);
         console.log('Event', event.message);

@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', ['messages' => Chat::all()]);
+    return Inertia::render('Dashboard', ['messages' => Chat::where('receiver_id', auth()->user()->id)->orWhere('sender_id', auth()->user()->id)->get()]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

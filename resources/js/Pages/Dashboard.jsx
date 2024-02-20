@@ -21,7 +21,6 @@ export default function Dashboard({ auth, messages }) {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        console.log('auth',auth);
         var receiverId = 2;
         axios.post('/messages/send', { message, receiver_id: receiverId }).then((res) => {
             setMessage('');

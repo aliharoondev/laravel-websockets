@@ -35,7 +35,7 @@ window.Echo = new Echo({
     wssPort: VITE_PUSHER_PORT ?? 443,
     forceTLS: false,
     enabledTransports: ['ws', 'wss'],
-    // authEndpoint: `http://127.0.0.1:8000/api/broadcasting/auth`,
+    authEndpoint: `http://127.0.0.1:8000/broadcasting/auth`,
     // auth: {
     //     headers: {
     //         'X-CSRF-TOKEN': '{{ csrf_token() }}',

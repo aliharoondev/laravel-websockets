@@ -18,9 +18,3 @@ use Illuminate\Support\Facades\Broadcast;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-//Route::middleware('auth:sanctum')->post('/broadcasting/auth', function (Request $request) {
-//    return $request->user();
-//});
-
-Broadcast::routes(['prefix' => 'api', 'middleware' => ['auth:sanctum']]);

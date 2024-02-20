@@ -21,8 +21,9 @@ use App\Models\Chat;
 ////    return $user->id == $receiverId;
 //});
 
-Broadcast::channel('chat.{sender}.{receiver}', function ($user) {
-    return !is_null($user);
+Broadcast::channel('chat.{senderId}', function ($user, $senderId) {
+    logger(['senderId'=>$senderId]);
+    return $user;
 });
 
 //return $user->id === Chat::findOrNew($receiverId)->receiver_id;
